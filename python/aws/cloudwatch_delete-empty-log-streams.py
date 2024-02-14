@@ -27,5 +27,35 @@ def get_logStreamNames(logGroup):
     for page in logstream_pages:
         for item in page['logStreams']:
             streams.append( item['logStreamname' ])
-            
+
     return streams
+
+def streamIsEmpty(logstream):
+        client_response = source_client.get_log_events(logGroupName=LOG_GROUP, logStreamname=logstream, startFromHead=True)
+        if 'events' in client_response and len(client_response['events']) > 0:
+             return False
+        else:
+             return True
+
+def deleteStream(logstream):
+     print("delete stream - " + logstream)
+     source_client.delete_log_stream(logGroupName=LOG_GROUP, logStreamname=logstream)
+
+
+def main():
+     streams = get_logStreamNames(LOG_GROUP)
+     print("LogStream count:" + str(len(streams)))
+
+     validStreams = 0
+     emptyStreams = 0
+
+     for stream in streams:
+        if streamIsEmpty(stream):
+            emptyStreams += 1
+        else:
+            validStreams += 1
+
+
+     
+if __name__ == "__main__":
+     main()
