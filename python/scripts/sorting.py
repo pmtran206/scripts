@@ -1,6 +1,7 @@
 # Interactive Sorting
 
 import sys 
+from random import randint
 
 
 def print_menu():
@@ -37,8 +38,21 @@ def get_menuInput():
     except ValueError:
         print("Enter valid number")
 
+def list_to_set(alist):
+    return list(set(alist))
+
+def generate_randomList(listSize):
+    randomList = [None] * listSize
+    for i in range(listSize):
+        randomList[i] = randint(0, 999)
+    uniqueList = list_to_set(randomList)
+    return uniqueList
+
 def SelectionSort():
-    get_listSize()
+    print("Selection Sorting")
+    listSize = get_listSize()
+    randomList = generate_randomList(listSize)
+    print(randomList)
 
 def main():
 
