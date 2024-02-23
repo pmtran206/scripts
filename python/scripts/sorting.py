@@ -52,7 +52,39 @@ def SelectionSort():
     print("Selection Sorting")
     listSize = get_listSize()
     randomList = generate_randomList(listSize)
-    print(randomList)
+    print(f"Random List: {randomList}")
+    
+    for i in range(len(randomList)):
+        smallestIndex = i
+        print(f"Pass {i+1}")
+        for j in range(i + 1, len(randomList)):
+            if randomList[j] < randomList[smallestIndex]: 
+                smallestIndex = j
+        #swap
+        randomList[i], randomList[smallestIndex] = randomList[smallestIndex], randomList[i]
+        print(randomList)
+
+    print(f"FINAL: {randomList}")
+
+def BubbleSort():
+    print("Bubble Sorting")
+    listSize = get_listSize()
+    randomList = generate_randomList(listSize)
+    print(f"Random List: {randomList}")
+
+    swap = True
+    passthru = 1
+    while (swap):
+        swap = False
+        for i in range(len(randomList) - 1):
+            print(i)
+            if (randomList[i+1] < randomList[i]): 
+                randomList[i], randomList[i+1] = randomList[i+1], randomList[i]
+                print(f"Bubble swap: {randomList}")
+                swap = True
+        print(f"Pass {passthru}:  {randomList}")
+        passthru += 1
+
 
 def main():
 
@@ -62,7 +94,7 @@ def main():
         sortOption = get_menuInput()
         
         if (sortOption == 1 ): SelectionSort()
-        elif (sortOption == 2): print("Bubble Sort")
+        elif (sortOption == 2): BubbleSort()
         elif (sortOption == 3): print("Insertion Sort")
         elif (sortOption == 4): print("Merge Sort")
         elif (sortOption == 5): print("Quick Sort")
