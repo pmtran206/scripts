@@ -9,6 +9,7 @@ def print_menu():
     print(" Interactive Python Sorting ")
     print(" 1. Selection Sort")
     print(" 2. Bubble Sort")
+    print(" 3. Insertion Sort")
     print(" q to quit")
     print("*" * 50)
 
@@ -85,6 +86,21 @@ def BubbleSort():
         print(f"Pass {passthru}:  {randomList}")
         passthru += 1
 
+def InsertionSort():
+    print("Insertion Sorting")
+    listSize = get_listSize()
+    randomList = generate_randomList(listSize)
+    print(f"Random List: {randomList}")
+
+    for i in range(len(randomList)):
+        j = i
+        while j > 0:
+            if randomList[j] < randomList[j-1]:
+                randomList[j], randomList[j-1] = randomList[j-1], randomList[j]
+                print(f"Insertion swap: {randomList}" )
+            j-=1
+        print(f"Pass {i + 1}")
+    print(randomList)
 
 def main():
 
@@ -95,7 +111,7 @@ def main():
         
         if (sortOption == 1 ): SelectionSort()
         elif (sortOption == 2): BubbleSort()
-        elif (sortOption == 3): print("Insertion Sort")
+        elif (sortOption == 3): InsertionSort()
         elif (sortOption == 4): print("Merge Sort")
         elif (sortOption == 5): print("Quick Sort")
         
