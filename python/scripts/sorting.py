@@ -10,6 +10,8 @@ def print_menu():
     print(" 1. Selection Sort")
     print(" 2. Bubble Sort")
     print(" 3. Insertion Sort")
+    print(" 4. Merge Sort")
+    print(" 5. Quick Sort")
     print(" q to quit")
     print("*" * 50)
 
@@ -102,6 +104,60 @@ def InsertionSort():
         print(f"Pass {i + 1}")
     print(randomList)
 
+def MergeSort():
+    print("Merge Sorting")
+    listSize = get_listSize()
+    randomList = generate_randomList(listSize)
+    print(f"Random List: {randomList}")
+
+    finalList = mergesort(randomList)
+    print(finalList)
+
+def mergesort(arr):
+    if len(arr) == 1: return arr
+
+    arr1 = []
+    arr2 = []
+    
+    i = 0
+    while(i < int(len(arr)/2)):
+        arr1.append(arr[i])
+        i += 1
+    
+    j = int(len(arr)/2)
+    while(j < len(arr)):
+        arr2.append(arr[j])
+        j += 1
+
+    arr1 = mergesort(arr1)
+    arr2 = mergesort(arr2)
+
+    return merge(arr1, arr2)
+
+def merge(arr1, arr2):
+    temparr = []
+
+    while( arr1 and arr2):
+        if arr1[0] > arr2[0]:
+            temparr.append(arr2.pop(0))
+        else:
+            temparr.append(arr1.pop(0))
+
+    while (arr1): 
+        temparr.append(arr1.pop(0))
+    while (arr2):
+        temparr.append(arr2.pop(0))
+
+    return temparr
+    
+def QuickSort():
+    print("Quick Sorting")
+    listSize = get_listSize()
+    randomList = generate_randomList(listSize)
+    print(f"Random List: {randomList}")
+
+
+
 def main():
 
     sortOption = 1      
@@ -112,8 +168,8 @@ def main():
         if (sortOption == 1 ): SelectionSort()
         elif (sortOption == 2): BubbleSort()
         elif (sortOption == 3): InsertionSort()
-        elif (sortOption == 4): print("Merge Sort")
-        elif (sortOption == 5): print("Quick Sort")
+        elif (sortOption == 4): MergeSort()
+        elif (sortOption == 5): QuickSort()
         
     
     
