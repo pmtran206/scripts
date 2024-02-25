@@ -156,9 +156,49 @@ def QuickSort():
     randomList = generate_randomList(listSize)
     print(f"Random List: {randomList}")
 
+    finalList = quicksort(randomList)
+    print(finalList)
 
+def quicksort(arr):
+    if len(arr) == 1: return arr
+ 
+    if arr:
+        left_array = []
+        right_array = []
+        pivot = arr.pop()
 
-def main():
+        while arr:
+            if arr[0] < pivot: left_array.append(arr.pop(0))
+            else: right_array.append(arr.pop(0))
+
+        
+        print(f"P- {pivot}")
+        print(f"L- {left_array}")
+        print(f"R- {right_array}")
+        
+
+        left_array = quicksort(left_array)
+        right_array = quicksort(right_array)
+
+        return quickmerge(left_array, pivot, right_array)
+
+def quickmerge(left, pivot, right):
+
+    print(f"quickmerge: L-{left} P-{pivot} R-{right}")
+    temparr = []
+    
+
+    if left: 
+        temparr = temparr + left
+    temparr.append(pivot)
+    if right:
+        temparr = temparr + right
+    
+    print(f"temparr: {temparr}")
+
+    return temparr
+
+def main():    
 
     sortOption = 1      
     while(sortOption != 'q'):
